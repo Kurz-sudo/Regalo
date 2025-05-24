@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Amo Infinito</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: #fff0f5;
+      overflow: hidden;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .columna {
+      position: absolute;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation-iteration-count: infinite;
+    }
+
+    .teamo {
+      font-size: 1.2rem;
+      color: #ff1493;
+    }
+
+    @keyframes scrollDown {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const columnas = 6;
+    const mensajesPorColumna = 20;
+    const espacio = window.innerWidth / columnas;
+
+    for (let i = 0; i < columnas; i++) {
+      const contenedor = document.createElement("div");
+      contenedor.className = "columna";
+      contenedor.style.left = `${i * espacio}px`;
+      contenedor.style.animation = `${i % 2 === 0 ? 'scrollDown' : 'scrollUp'} 15s linear infinite`;
+
+      // Duplicamos el contenido para que parezca un scroll continuo
+      for (let j = 0; j < mensajesPorColumna * 2; j++) {
+        const texto = document.createElement("div");
+        texto.className = "teamo";
+        texto.textContent = "Te amo 💖";
+        contenedor.appendChild(texto);
+      }
+
+      document.body.appendChild(contenedor);
+    }
+  </script>
+</body>
+</html>
